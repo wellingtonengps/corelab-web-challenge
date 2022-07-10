@@ -1,10 +1,12 @@
+import { Container } from "./styles";
+
 interface IButton {
   onClick: () => void;
-  text: string;
+  title: string;
 }
 
 const Button = (props: IButton) => {
-  return <button onClick={props.onClick}>{props.text}</button>;
+  return <Container onClick={props.onClick}>{props.title}</Container>;
 };
 
 export default Button;

@@ -1,3 +1,6 @@
+import { Containe, Input } from "./styles";
+import { AiOutlineSearch } from "react-icons/ai"
+
 interface ISearch {
   placeholder: string;
   value: string;
@@ -6,7 +9,11 @@ interface ISearch {
 
 const Search = (props: ISearch) => {
   return (
-    <input type="text" placeholder={props.placeholder} value={props.value} />
+    <Containe>
+      <AiOutlineSearch size={25} />
+      <Input type="text" placeholder={props.placeholder} value={props.value} />
+    </Containe>
+
   );
 };
 

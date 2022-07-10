@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
-import styles from "./Card.module.scss";
+import { CardStyle, ButtonStyle, BodyCard } from "./styles";
+import { AiOutlineEdit, AiOutlineClose, AiFillHeart } from "react-icons/ai";
+import IconButton from "../IconButton";
 
 interface ICard {
   title: string;
@@ -8,11 +10,24 @@ interface ICard {
 
 const Card = (props: ICard) => {
   return (
-    <div className={styles.Card}>
-      <h2>{props.title}</h2>
+    <CardStyle>
+      <ButtonStyle>
+        <IconButton onClick={() => { }}>
+          <AiOutlineEdit />
+        </IconButton>
+        <IconButton onClick={() => { }}>
+          <AiOutlineClose />
+        </IconButton>
+        <IconButton onClick={() => { }}>
+          <AiFillHeart />
+        </IconButton>
+      </ButtonStyle>
+      <BodyCard>
+        <h2>{props.title}</h2>
+        <div>{props.children}</div>
+      </BodyCard>
 
-      <div className={styles.content}>{props.children}</div>
-    </div>
+    </CardStyle>
   );
 };
 
