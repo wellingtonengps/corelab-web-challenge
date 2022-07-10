@@ -35,7 +35,8 @@ const VehiclesPage = () => {
         <WrapperCard>
           {
             vehicles.map((vehicle) => {
-              return <Card title={vehicle.name} key={vehicle.id}>
+              console.log(vehicle);
+              return <Card title={vehicle.name} id={vehicle.id} key={vehicle.id} IsFavorite={vehicle.isFavorite}>
                 <p>Preço: {vehicle.price}</p>
                 <p>Descrição: {vehicle.description}</p>
                 <p>Ano: {vehicle.year}</p>
