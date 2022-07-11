@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import { Container, ButtonStyle, BodyCard } from "./styles";
+import { ReactNode, useState } from "react";
+import { Container, WrapperButtons, WrapperBody } from "./styles";
 import { AiOutlineEdit, AiOutlineClose, AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import IconButton from "../IconButton";
 import { deleteVehicles, updateVehicles } from "../../lib/api";
@@ -7,37 +7,43 @@ import { deleteVehicles, updateVehicles } from "../../lib/api";
 interface ICard {
   title: string;
   children: ReactNode;
-  id: number
-  IsFavorite: boolean;
-}
-
-async function HandleIsFavorite(id: number, body: {}) {
-  await updateVehicles(id, body);
-}
-
-async function HandleRemoveVehicle(id: number) {
-  await deleteVehicles(id);
+  id: number;
+  isFavorite: boolean;
+  renderParent: () => void;
 }
 
 const Card = (props: ICard) => {
 
+  const [isFavorite, setIsFavorite] = useState(props.isFavorite);
+
+  async function HandleIsFavorite() {
+    setIsFavorite(!isFavorite);
+    await updateVehicles(props.id, { isFavorite: !props.isFavorite });
+    props.renderParent();
+  }
+
+  async function HandleRemoveVehicle() {
+    await deleteVehicles(props.id);
+    props.renderParent();
+  }
+
   return (
     <Container>
-      <ButtonStyle>
+      <WrapperButtons>
         <IconButton onClick={() => { }}>
           <AiOutlineEdit />
         </IconButton>
-        <IconButton onClick={() => HandleRemoveVehicle(props.id)}>
+        <IconButton onClick={() => HandleRemoveVehicle()}>
           <AiOutlineClose />
         </IconButton>
-        <IconButton onClick={() => HandleIsFavorite(props.id, { isFavorite: true })}>
-          {props.IsFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
+        <IconButton onClick={() => HandleIsFavorite()}>
+          {props.isFavorite ? <AiFillHeart /> : <AiOutlineHeart />}
         </IconButton>
-      </ButtonStyle>
-      <BodyCard>
+      </WrapperButtons>
+      <WrapperBody>
         <h2>{props.title}</h2>
         <div>{props.children}</div>
-      </BodyCard>
+      </WrapperBody>
 
     </Container>
   );

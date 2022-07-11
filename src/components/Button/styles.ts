@@ -5,7 +5,7 @@ export const Container = styled.button`
   background-color: #65dcc7;
   border: 0;
   height: 3.75rem;
-  max-width: 22.75rem;
+  width: 22.75rem;
   border-radius: 6.25rem;
   align-items: center;
   justify-content: center;

@@ -17,7 +17,7 @@ export const Container = styled.div`
   }
 `;
 
-export const BodyCard = styled.div`
+export const WrapperBody = styled.div`
   color: #ffff;
   font-size: 12px;
   font-style: normal;
@@ -37,7 +37,7 @@ export const BodyCard = styled.div`
   }
 `;
 
-export const ButtonStyle = styled.div`
+export const WrapperButtons = styled.div`
   display: flex;
   align-self: flex-end;
 `;
