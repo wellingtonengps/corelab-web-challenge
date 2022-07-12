@@ -5,6 +5,7 @@ import styles from "./Vehicles.module.scss";
 import { IVehicle } from "../../types/Vehicle";
 import { WrapperCards, WrapperHeader, WrapperSearch } from "./styles";
 import { IoOptionsOutline } from "react-icons/io5"
+import { useNavigate } from "react-router-dom";
 
 
 const VehiclesPage = () => {
@@ -13,6 +14,7 @@ const VehiclesPage = () => {
   const [render, setRender] = useState(false);
 
   const renderParent = () => setRender(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchVehicles = async () => {
@@ -32,7 +34,7 @@ const VehiclesPage = () => {
             <Search placeholder="Buscar" value={search} onChange={setSearch} />
             <IconButton onClick={() => { }}><IoOptionsOutline size={50} /></IconButton>
           </WrapperSearch>
-          <Button title="Adicionar" onClick={() => { }} />
+          <Button title="Adicionar" onClick={() => navigate('/adicionar')} />
         </WrapperHeader>
 
         <WrapperCards>

@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.module.scss';
-import VehiclesPage from './pages/Vehicles';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { VehiclesPage, AdicionarPage } from './pages';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <VehiclesPage />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<VehiclesPage />} />
+        <Route path='/adicionar' element={<AdicionarPage />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

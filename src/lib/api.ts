@@ -14,6 +14,14 @@ const update = async (path: string, body: {}): Promise<any> => {
   });
 };
 
+const post = async (path: string, body: {}): Promise<any> => {
+  return fetch(endpoint(path), {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: { "Content-type": "application/json; charset=UTF-8" },
+  });
+};
+
 const remove = async (path: string): Promise<any> => {
   return fetch(endpoint(path), {
     method: "DELETE",
@@ -26,6 +34,10 @@ export const getVehicles = async () => {
 
 export const updateVehicles = async (id: number, body: {}) => {
   return update(`/vehicles/${id}`, body);
+};
+
+export const createVehicles = async (body: {}) => {
+  return post("/vehicles", body);
 };
 
 export const deleteVehicles = async (id: number) => {
